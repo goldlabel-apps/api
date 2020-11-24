@@ -1,0 +1,30 @@
+{
+  "name": "express-api",
+  "version": "0.0.4",
+  "description": "listingslab serverless API",
+  "repository": "https://github.com/listingslab-software/express-api",
+  "author": "listingslab<listingslab@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "12"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "algoliasearch": "^4.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.6.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.2.0"
+  }
+}
