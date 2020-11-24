@@ -1,8 +1,8 @@
 {
-  "name": "express-api",
-  "version": "0.0.4",
-  "description": "listingslab serverless API",
-  "repository": "https://github.com/listingslab-software/express-api",
+  "name": "serverless-express-api",
+  "version": "0.0.5",
+  "description": "Serverless Node/Express API for firebase",
+  "repository": "https://github.com/listingslab-software/serverless-express-api",
   "author": "listingslab<listingslab@gmail.com>",
   "license": "MIT",
   "scripts": {

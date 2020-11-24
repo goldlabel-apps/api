@@ -1,2 +1,6 @@
-# serverless-express-api
-Always Free. Always Open Source
+
+# Serverless Express API
+
+Serverless Node/Express API for firebase
+
+> [Start with package.json](./package.json)
