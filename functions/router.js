@@ -6,24 +6,26 @@ function respond (req, res, response){
 	let r = {	
 		app: PJSON.description,	
 		...response,
-		vs: PJSON.version,
-		repository: PJSON.repository,
 		request: {
 			endpoint,
 			method,
 			unixEpoch: Date.now(),
 		},	
-		
+		openSource: PJSON.repository,
+		vs: PJSON.version,
 	}
 	res.send(JSON.stringify(r))
 }
 
 exports.router = async (req, res, db) => {	
-	const endpoint = req.path.toLowerCase()
+	let endpoint = req.path.toLowerCase()
+	if(endpoint.substr(-1) === '/') {
+        endpoint =  endpoint.substr(0, endpoint.length - 1)
+    }
 
 	switch (endpoint) {
 
-		case `/`:
+		case ``:
 			respond(req, res, {
 				response:{
 					status: 200, 
@@ -48,14 +50,11 @@ exports.router = async (req, res, db) => {
 				}})
 			return
 
-
-
-
 		default: {
 			respond(req, res, { 
 				response:{
 					status: 404,
-					message: `Endpoint not found`,
+					message: `Sorry, your endpoint was not found`,
 				}})
 			return
 		}
