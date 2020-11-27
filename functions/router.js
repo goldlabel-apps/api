@@ -1,14 +1,11 @@
 const PJSON = require('../package.json')
-// const { create } = require('./create.js')
-// const { update } = require('./update.js')
-// const { fsdelete } = require('./delete.js')
-// const { checkExistance } = require('./checkExistance.js')
 
 function respond (req, res, response){
 	const endpoint = req.path
 	const method = `GET`
-	let r = {		
-		description: PJSON.description,
+	let r = {	
+		app: PJSON.description,	
+		...response,
 		vs: PJSON.version,
 		repository: PJSON.repository,
 		request: {
@@ -16,47 +13,38 @@ function respond (req, res, response){
 			method,
 			unixEpoch: Date.now(),
 		},	
-		...response,
+		
 	}
 	res.send(JSON.stringify(r))
 }
 
 exports.router = async (req, res, db) => {	
-	const endpoint = req.path
-	const home = `http://localhost:5001/listingslab--express-api/us-central1/api`
-	// const home = `https://api.listingslab.com`
+	const endpoint = req.path.toLowerCase()
+
 	switch (endpoint) {
 
 		case `/`:
-			respond(req, res, { 
-				
+			respond(req, res, {
 				response:{
 					status: 200, 
-					message: `help you with something, brah?`,
-					endpoints: [
-						`${home}/ping`,
-						`${home}/p2t`,
-					]
+					message: `Help you with something, brah?`,
 				}})
 			return
 
 		case `/ping`:
-			respond(req, res, { 
-				
+			respond(req, res, {
 				response:{
 					status: 200,
 					message: `pong`,
-					home,
 				}})
 			return
 
-		case `/p2t`:
+		case `/push2talk`:
 			respond(req, res, { 
 				
 				response:{
 					status: 200,
-					message: `Push 2 Talk`,
-					home,
+					message: `pus2talk success`,
 				}})
 			return
 
@@ -66,9 +54,8 @@ exports.router = async (req, res, db) => {
 		default: {
 			respond(req, res, { 
 				response:{
-					status: 500,
-					message: `Bad endpoint`,
-					home,
+					status: 404,
+					message: `Endpoint not found`,
 				}})
 			return
 		}
