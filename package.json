@@ -1,6 +1,6 @@
 {
   "name": "serverless-express-api",
-  "version": "0.0.6",
+  "version": "2.0.0",
   "description": "Serverless Node/Express API for firebase",
   "repository": "https://github.com/listingslab-software/serverless-express-api",
   "author": "listingslab<listingslab@gmail.com>",

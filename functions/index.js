@@ -1,11 +1,24 @@
 const functions = require('firebase-functions')
 
-exports.push2talk = functions.https.onRequest((request, response) => {
-  
-  functions.logger.info("Hello logs!", {
-  	structuredData: true,
-  })
+const admin = require('firebase-admin')
+const serviceAccount = require('./serviceAccountKey.json')
+const express = require('express')
+const cors = require('cors')
+const dotenv = require('dotenv').config()
+const { router } = require('./router.js')
 
-  response.send("Hello push2talk")
-  
+admin.initializeApp({
+  projectId: serviceAccount.project_id, 
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: process.env.DATABASEURL,
+  storageBucket: process.env.STORAGEBUCKET,
 })
+let db = admin.firestore()
+
+const app = express()
+app.use(cors({ origin: true }))
+app.all('**', async (req, res) => {
+	router(req, res, db)
+})
+
+exports.api = functions.https.onRequest(app)
