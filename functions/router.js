@@ -1,15 +1,16 @@
 const PJSON = require('../package.json')
-const { create } = require('./create.js')
-const { update } = require('./update.js')
-const { fsdelete } = require('./delete.js')
-const { checkExistance } = require('./checkExistance.js')
+// const { create } = require('./create.js')
+// const { update } = require('./update.js')
+// const { fsdelete } = require('./delete.js')
+// const { checkExistance } = require('./checkExistance.js')
 
 function respond (req, res, response){
 	const endpoint = req.path
 	const method = `GET`
-	let r = {
-		app: PJSON.name,
+	let r = {		
+		description: PJSON.description,
 		vs: PJSON.version,
+		repository,
 		request: {
 			endpoint,
 			method,
