@@ -10,7 +10,7 @@ function respond (req, res, response){
 	let r = {		
 		description: PJSON.description,
 		vs: PJSON.version,
-		repository,
+		repository: PJSON.repository,
 		request: {
 			endpoint,
 			method,
