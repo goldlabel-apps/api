@@ -1,8 +1,4 @@
 const PJSON = require('./package.json')
-const { create } = require('./api/create.js')
-const { update } = require('./api/update.js')
-const { fsdelete } = require('./api/delete.js')
-const { checkExistance } = require('./api/checkExistance.js')
 
 exports.router = async (req, res, db) => {	
 
@@ -17,7 +13,7 @@ exports.router = async (req, res, db) => {
 			respond(req, res, {
 				response:{
 					status: 200, 
-					message: `help you with something, brah?`,
+					data: { message: `Help you with something, brah?` },
 				}})
 			return
 
@@ -25,7 +21,7 @@ exports.router = async (req, res, db) => {
 			respond(req, res, {
 				response:{
 					status: 200,
-					message: `pong`,
+					data: { message: `pong` },
 				}})
 			return
 
@@ -33,7 +29,7 @@ exports.router = async (req, res, db) => {
 			respond(req, res, {
 				response:{
 					status: 200,
-					message: `Push2Talk OK`,
+					data: { message: `Push2Talk OK` },
 				}})
 			return
 
@@ -41,7 +37,7 @@ exports.router = async (req, res, db) => {
 			respond(req, res, { 
 				response:{
 					status: 404,
-					message: `Sorry, that endpoint does not exist`,
+					data: { message: `Sorry, that endpoint does not exist` },
 				}})
 			return
 		}
@@ -51,18 +47,16 @@ exports.router = async (req, res, db) => {
 function respond (req, res, response){
 	const endpoint = req.path
 	const method = req.method
-
 	let r = {
 		...response,
 		request: {
-			unixEpoch: Date.now(),
 			endpoint,
 			method,
 			payload: req.body,
 		},
 		app: PJSON.name,
+		time: Date.now(),
 		vs: PJSON.version,
-		// repository: PJSON.repository,
 	}
 	res.send(JSON.stringify(r))
 }

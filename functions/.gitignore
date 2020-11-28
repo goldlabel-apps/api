@@ -3,4 +3,5 @@ node_modules
 serviceAccountKey.json
 
 # These endpoints are currently in private repos
-push2talk
+
+endpoints/push2talk
