@@ -1,0 +1,18 @@
+{
+	"hosting": {
+		"public": "./public",
+		"rewrites": [ 
+			{
+				"source": "**",
+				"function": "api"
+			}
+		]
+	},
+	"firestore": {
+		"rules": "firestore.rules",
+		"indexes": "firestore.indexes.json"
+	},
+	"storage": {
+		"rules": "storage.rules"
+	}
+}

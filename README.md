@@ -3,4 +3,4 @@
 
 Serverless Node/Express API for firebase
 
-> [Start with package.json](./package.json)
+> [Get Started](https://listingslab.com/work/javascript/node/)
