@@ -5,7 +5,12 @@ const { fsdelete } = require('./api/delete.js')
 const { checkExistance } = require('./api/checkExistance.js')
 
 exports.router = async (req, res, db) => {	
-	const endpoint = req.path
+
+	let endpoint = req.path.toLowerCase()
+	if(endpoint.substr(-1) === '/') {
+        endpoint =  endpoint.substr(0, endpoint.length - 1)
+    }
+
 	switch (endpoint) {
 
 		case `/`:
@@ -46,16 +51,18 @@ exports.router = async (req, res, db) => {
 function respond (req, res, response){
 	const endpoint = req.path
 	const method = req.method
+
 	let r = {
 		...response,
 		request: {
+			unixEpoch: Date.now(),
 			endpoint,
 			method,
-			unixEpoch: Date.now(),
+			payload: req.body,
 		},
-		app: PJSON.description,
+		app: PJSON.name,
 		vs: PJSON.version,
-		repository: PJSON.repository,
+		// repository: PJSON.repository,
 	}
 	res.send(JSON.stringify(r))
 }
