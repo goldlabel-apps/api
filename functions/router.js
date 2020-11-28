@@ -5,7 +5,8 @@ function respond (req, res, response){
 	const method = `GET`
 	let r = {	
 		app: PJSON.description,	
-		...response,
+		// eslint-disable-next-line
+		response: response.response,
 		request: {
 			endpoint,
 			method,
