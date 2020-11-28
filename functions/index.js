@@ -1,11 +1,10 @@
 const functions = require('firebase-functions')
-
 const admin = require('firebase-admin')
 const serviceAccount = require('./serviceAccountKey.json')
 const express = require('express')
 const cors = require('cors')
 const dotenv = require('dotenv').config()
-const { router } = require('./router.js')
+const { router } = require('./api/router.js')
 
 admin.initializeApp({
   projectId: serviceAccount.project_id, 
