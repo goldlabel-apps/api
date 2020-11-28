@@ -13,7 +13,7 @@ exports.router = async (req, res, db) => {
 
 	switch (endpoint) {
 
-		case `/`:
+		case ``:
 			respond(req, res, {
 				response:{
 					status: 200, 
