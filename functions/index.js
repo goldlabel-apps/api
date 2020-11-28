@@ -4,7 +4,7 @@ const serviceAccount = require('./serviceAccountKey.json')
 const express = require('express')
 const cors = require('cors')
 const dotenv = require('dotenv').config()
-const { router } = require('./router.js')
+const { router } = require('./endpoints/router.js')
 
 admin.initializeApp({
   projectId: serviceAccount.project_id, 
