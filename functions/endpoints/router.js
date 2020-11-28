@@ -1,4 +1,4 @@
-const PJSON = require('./package.json')
+const PJSON = require('../package.json')
 
 exports.router = async (req, res, db) => {	
 
@@ -52,11 +52,21 @@ function respond (req, res, response){
 		request: {
 			endpoint,
 			method,
-			payload: req.body,
 		},
 		app: PJSON.name,
 		time: Date.now(),
 		vs: PJSON.version,
+	}
+	if (method === 'POST'){
+		const payload = req.body
+		r = {
+			...r,
+			request: {
+				endpoint,
+				method,
+				payload,
+			}
+		}
 	}
 	res.send(JSON.stringify(r))
 }
