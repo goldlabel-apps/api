@@ -6,6 +6,9 @@ const cors = require('cors')
 const dotenv = require('dotenv').config()
 const { router } = require('./endpoints/router.js')
 
+
+console.log ('API vs 2.1.1')
+
 admin.initializeApp({
   projectId: serviceAccount.project_id, 
   credential: admin.credential.cert(serviceAccount),
