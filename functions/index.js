@@ -7,13 +7,13 @@ const dotenv = require('dotenv').config()
 const { router } = require('./endpoints/router.js')
 
 
-console.log ('API vs 2.1.1')
+// console.log ('API vs 2.1.1', process.env.DATABASEURL)
 
 admin.initializeApp({
   projectId: serviceAccount.project_id, 
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: process.env.DATABASEURL,
-  storageBucket: process.env.STORAGEBUCKET,
+  // databaseURL: process.env.DATABASEURL,
+  // storageBucket: process.env.STORAGEBUCKET,
 })
 let db = admin.firestore()
 
