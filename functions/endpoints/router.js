@@ -1,5 +1,6 @@
 const PJSON = require('../package.json')
 
+
 exports.router = async (req, res, db) => {	
 
 	let endpoint = req.path.toLowerCase()
@@ -22,14 +23,6 @@ exports.router = async (req, res, db) => {
 				response:{
 					status: 200,
 					data: { message: `pong` },
-				}})
-			return
-
-		case `/push2talk`:
-			respond(req, res, {
-				response:{
-					status: 200,
-					data: { message: `Push2Talk OK` },
 				}})
 			return
 
