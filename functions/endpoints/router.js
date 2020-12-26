@@ -1,11 +1,22 @@
 const PJSON = require('../package.json')
 
+const { 
+	getUser 
+} = require( './user' )
 
 exports.router = async (req, res, db) => {	
 
 	let endpoint = req.path.toLowerCase()
 	if(endpoint.substr(-1) === '/') {
         endpoint =  endpoint.substr(0, endpoint.length - 1)
+    }
+    let exploded = endpoint.split(`/`)
+    let userId = null
+    if ( exploded[1] === `user` ){
+    	endpoint = `/user`
+    	if (exploded[2]){
+    		userId = exploded[2]
+    	}
     }
 
 	switch (endpoint) {
@@ -18,11 +29,14 @@ exports.router = async (req, res, db) => {
 				}})
 			return
 
-		case `/ping`:
+		case `/user`:
+			const user = await getUser(req, res, db, userId)
 			respond(req, res, {
 				response:{
 					status: 200,
-					data: { message: `pong` },
+					data: {
+						user,
+					},
 				}})
 			return
 
@@ -30,7 +44,9 @@ exports.router = async (req, res, db) => {
 			respond(req, res, { 
 				response:{
 					status: 404,
-					data: { message: `Sorry, that endpoint does not exist` },
+					data: { 
+						message: `Sorry, that endpoint does not exist`, 
+					},
 				}})
 			return
 		}

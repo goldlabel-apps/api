@@ -17,6 +17,7 @@ let db = admin.firestore()
 const app = express()
 app.use(cors({ origin: true }))
 app.all('**', async (req, res) => {
+	// console.log ('helloworld')
 	router(req, res, db)
 })
 
