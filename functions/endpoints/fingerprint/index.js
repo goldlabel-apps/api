@@ -5,23 +5,23 @@ exports.getTing = async (req, res, db, fingerprint) => {
 			message: `Fingerprint not specified in request`,
 		}
 	}
-	db.collection( `tings` ).where( `fingerprint`, `==`, fingerprint)
-		.get()
-		.then(function( snap ) {
-			let tingExists = {}
-	        snap.forEach(function(doc) {
-	        	tingExists = {
-					id: doc.id,
-					data: doc.data(),
-				}
-	        })
-	        console.log ('tingExists', tingExists)
-	      	return tingExists
-	    })
-		.catch(function(error) {
-			return {
-				error: true,
-				message: `Error getting tingResult`,
-			}
-	    })
+	let ting = {}
+	const tingQuery = await db.collection(`tings`).get(fingerprint)
+	if (tingQuery.empty){
+		let ting = {
+			created: Date.now(),
+			fingerprint
+		}
+		const newTingQuery = await db.collection(`tings`).doc(fingerprint).set(ting)
+		return {
+			preExisting: false,
+			ting,
+		}
+	} else {
+		tingQuery.forEach((doc) => { ting = doc.data() })
+		return {
+			preExisting: true,
+			ting,
+		}
+	}
 }

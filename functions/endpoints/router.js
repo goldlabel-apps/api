@@ -28,13 +28,11 @@ exports.router = async (req, res, db) => {
 			return
 
 		case `/fingerprint`:
-			const ting = await getTing(req, res, db, fingerprint)
+			const data = await getTing(req, res, db, fingerprint)
 			respond(req, res, {
 				response:{
 					status: 200,
-					data: {
-						ting,
-					},
+					data,
 				}})
 			return
 
