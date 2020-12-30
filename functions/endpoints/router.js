@@ -1,8 +1,5 @@
 const PJSON = require('../package.json')
-
-const { 
-	getUser 
-} = require( './user' )
+const { getTing } = require( './fingerprint' )
 
 exports.router = async (req, res, db) => {	
 
@@ -11,11 +8,12 @@ exports.router = async (req, res, db) => {
         endpoint =  endpoint.substr(0, endpoint.length - 1)
     }
     let exploded = endpoint.split(`/`)
-    let userId = null
-    if ( exploded[1] === `user` ){
-    	endpoint = `/user`
+    
+    let fingerprint = ``
+    if ( exploded[1] === `fingerprint` ){
+    	endpoint = `/fingerprint`
     	if (exploded[2]){
-    		userId = exploded[2]
+    		fingerprint = exploded[2]
     	}
     }
 
@@ -29,13 +27,13 @@ exports.router = async (req, res, db) => {
 				}})
 			return
 
-		case `/user`:
-			const user = await getUser(req, res, db, userId)
+		case `/fingerprint`:
+			const ting = await getTing(req, res, db, fingerprint)
 			respond(req, res, {
 				response:{
 					status: 200,
 					data: {
-						user,
+						ting,
 					},
 				}})
 			return
@@ -79,4 +77,3 @@ function respond (req, res, response){
 	}
 	res.send(JSON.stringify(r))
 }
-
