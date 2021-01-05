@@ -1,7 +1,7 @@
 const PJSON = require('../package.json')
 const { initTing } = require( './ting' )
 const { randomIdentity } = require( '../lib/randomIdentity' )
-
+const { notify } = require( './notify' )
 
 exports.router = async (req, res, db) => {	
 
@@ -20,15 +20,9 @@ exports.router = async (req, res, db) => {
 	    	}
 	    }
     }
-
-
     if( endpoint.indexOf('/random-identity') !== -1 ) {
         endpoint = `/random-identity`
     }
-    
-    
-    // console.log ('exploded', exploded)
-    
 
 	switch (endpoint) {
 
@@ -36,7 +30,18 @@ exports.router = async (req, res, db) => {
 			respond(req, res, {
 				response:{
 					status: 200, 
-					data: { message: `Help you with something, brah?` },
+					data: { 
+						message: `Help you with something, brah?` 
+					},
+				}})
+			return
+
+		case `/notify`:
+			const notifyData = await notify(req, res, db)
+			respond(req, res, {
+				response:{
+					status: 200,
+					data: notifyData,
 				}})
 			return
 
