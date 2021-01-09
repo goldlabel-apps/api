@@ -1,7 +1,8 @@
 
 node_modules
 serviceAccountKey.json
+.env
 
-# These endpoints are currently in private repos
-
+# Endpoints are currently in separate private repos
 endpoints/push2talk
+
