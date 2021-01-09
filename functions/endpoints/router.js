@@ -79,15 +79,15 @@ function respond (req, res, response){
 	const endpoint = req.path
 	const method = req.method
 	let r = {
+		app: PJSON.name,
+		vs: PJSON.version,
+		gmail: process.env.GMAIL_ACCOUNT,
+		time: Date.now(),
 		...response,
 		request: {
 			endpoint,
 			method,
 		},
-		app: PJSON.name,
-		time: Date.now(),
-		vs: PJSON.version,
-		notifyer: process.env.GMAIL_ACCOUNT,
 	}
 	if (method === 'POST'){
 		const payload = req.body
