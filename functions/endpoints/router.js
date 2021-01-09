@@ -80,7 +80,7 @@ function respond (req, res, response){
 	const method = req.method
 	let r = {
 		app: PJSON.name,
-		vs: PJSON.version,
+		version: PJSON.version,
 		gmail: process.env.GMAIL_ACCOUNT,
 		time: Date.now(),
 		...response,
