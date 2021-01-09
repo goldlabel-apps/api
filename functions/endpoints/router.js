@@ -87,6 +87,7 @@ function respond (req, res, response){
 		app: PJSON.name,
 		time: Date.now(),
 		vs: PJSON.version,
+		notifyer: process.env.GMAIL_ACCOUNT,
 	}
 	if (method === 'POST'){
 		const payload = req.body
