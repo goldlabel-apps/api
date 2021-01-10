@@ -3,8 +3,11 @@ const htmlToText = require('nodemailer-html-to-text').htmlToText
 
 exports.notify = async (req, res, db) => {
 
+	let sendFrom = process.env.GMAIL_ACCOUNT
+	
 	return {
-		askdsa: `ok`,
+		reqBody: req.body,
+		sendFrom,
 	}
 	
 }

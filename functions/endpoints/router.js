@@ -38,6 +38,14 @@ exports.router = async (req, res, db) => {
 
 		case `/notify`:
 			const notifyData = await notify(req, res, db)
+			if (!notifyData){
+				respond(req, res, {
+					response:{
+						status: 598,
+						message: `Could not notify`,
+					}})
+				return
+			}
 			respond(req, res, {
 				response:{
 					status: 200,
