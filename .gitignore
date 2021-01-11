@@ -3,3 +3,4 @@ ui-debug.log
 functions/_DEV
 node_modules
 serviceAccountKey.json
+yarn-error.log
