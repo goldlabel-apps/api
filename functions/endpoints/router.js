@@ -89,7 +89,8 @@ function respond (req, res, response){
 	let r = {
 		app: PJSON.name,
 		version: PJSON.version,
-		gmail: process.env.GMAIL_ACCOUNT,
+		contact: process.env.GMAIL_ACCOUNT,
+		repository: PJSON.repository,
 		time: Date.now(),
 		...response,
 		request: {
