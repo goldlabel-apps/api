@@ -10,10 +10,7 @@ exports.pingpong = async (req, res, db) => {
 	return {
 		status: 200,
 		data: {
-			message: `PingPong`,
-			query,
-			path,
-			params,
+			message: `PingPong all good, bruv`,
 		},
 	}
 

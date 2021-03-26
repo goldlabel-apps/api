@@ -1,4 +1,6 @@
-## /ping
+# Listingslab API
+
+## /notify
 
 request
 
