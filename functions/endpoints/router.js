@@ -10,12 +10,17 @@ exports.router = async (req, res, db) => {
 	switch (endpoint) { 
 		
 		case ``:
+			
+			let notifyURLParams = `?mode=example&to=listingslab@gmail.com`
+
 			respond(req, res, { response: {status: 200, data: { 
 				message: `Help you with something, brah?`,
 				examples: {
-					ping: `${ getBaseAPIUrl( req ) }ping`,
+					ping: `${ getBaseAPIUrl( req ) }ping/`,
+					notify: `${ getBaseAPIUrl( req ) }notify/${ notifyURLParams }`,
 				}
 			}}})
+			
 			return 
 
 		case `/ping`:
@@ -29,11 +34,11 @@ exports.router = async (req, res, db) => {
 
 		case `/notify`:
 			const notifyData = await notify(req, res, db)
-			if (!notifyData){ 
-				respond(req, res, { response:{ status: 404.5, message: `Could not notify` }}) 
-				return
-			}
-			respond(req, res, {response:{ status: 200, data: notifyData }})
+			respond(req, res, { response:{ 
+									error: notifyData.error, 
+									status: notifyData.status, 
+									data: notifyData.data, 
+			}})
 			return
 
 		default: {
