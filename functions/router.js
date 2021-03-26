@@ -1,12 +1,15 @@
 const PJSON = require('../package.json')
 const { ping } = require( './ping' )
-const { notify } = require( './notify' )
+const { notify } = require( './endpoints/notify' )
 
 exports.router = async (req, res, db) => {	
+	
 	let endpoint = req.path.toLowerCase()
 	if( endpoint.substr( -1 ) === '/' ) {
         endpoint =  endpoint.substr(0, endpoint.length - 1)
     }
+
+
 	switch (endpoint) { 
 		
 		case ``:
@@ -18,6 +21,7 @@ exports.router = async (req, res, db) => {
 				examples: {
 					ping: `${ getBaseAPIUrl( req ) }ping/`,
 					notify: `${ getBaseAPIUrl( req ) }notify/${ notifyURLParams }`,
+					pingpong: `${ getBaseAPIUrl( req ) }pingpong/`,
 				}
 			}}})
 			
@@ -49,17 +53,12 @@ exports.router = async (req, res, db) => {
 	}
 }
 
-function getBaseAPIUrl (req) {
-	let baseAPIUrl = `https://api.listingslab.com/`
-	if ( req.host === 'localhost' ){
-		baseAPIUrl = `http://localhost:5001/listingslab--express-api/us-central1/api/`
-	}
-	return baseAPIUrl
-}
-
-function respond (req, res, response){
-	const endpoint = req.path
-	const method = req.method
+function respond ( req, res, response ){
+	const {
+		path,
+		method,
+		body,
+	} = req
 	let r = {
 		app: PJSON.name,
 		baseAPIUrl: getBaseAPIUrl( req ),
@@ -67,21 +66,19 @@ function respond (req, res, response){
 		contact: process.env.GMAIL_ACCOUNT,
 		time: Date.now(),
 		request: {
-			endpoint,
+			endpoint: path,
 			method,
+			body,
 		},
 		...response,
 	}
-	if (method === 'POST'){
-		const payload = req.body
-		r = {
-			...r,
-			request: {
-				endpoint,
-				method,
-				payload,
-			}
-		}
-	}
 	res.send(JSON.stringify(r))
+}
+
+function getBaseAPIUrl (req) {
+	let baseAPIUrl = `https://api.listingslab.com/`
+	if ( req.host === 'localhost' ){
+		baseAPIUrl = `http://localhost:5001/listingslab--express-api/us-central1/api/`
+	}
+	return baseAPIUrl
 }
