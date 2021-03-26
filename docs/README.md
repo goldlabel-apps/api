@@ -4,5 +4,5 @@
 
 #### endpoints
 
-- [ping](./md/001_Ping)
+- [ping](./md/001_Ping.md)
 - notify
