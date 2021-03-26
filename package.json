@@ -1,8 +1,8 @@
 {
   "license": "MIT",
   "scripts": {
-    "api": "$PWD/unix/api",
+    "start": "$PWD/unix/api",
     "git": "$PWD/unix/git",
-    "pub": "$PWD/unix/firebase"
+    "deploy": "$PWD/unix/firebase"
   }
 }

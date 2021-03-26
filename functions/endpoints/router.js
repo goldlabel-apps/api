@@ -1,33 +1,14 @@
 const PJSON = require('../package.json')
 const { ping } = require( './ping' )
-const { initTing } = require( './ting' )
 const { notify } = require( './notify' )
-const { canna } = require( './canna' )
-const { example } = require( './canna/example' )
-const { visitor } = require( './visitor/visitor' )
-
-const { 
-	randomIdentity,
-} = require( '../lib/randomIdentity' )
 
 exports.router = async (req, res, db) => {	
-
 	let endpoint = req.path.toLowerCase()
-
 	if( endpoint.substr( -1 ) === '/' ) {
         endpoint =  endpoint.substr(0, endpoint.length - 1)
     }
-
-    if( endpoint.indexOf('/visitor' ) !== -1 ) {
-        endpoint = `/visitor`
-    }
-        
-    if( endpoint === `/canna/example` ) {
-        endpoint = `/canna/example`
-    }
-
-	switch (endpoint) {
-
+	switch (endpoint) { 
+		
 		case ``:
 			respond(req, res, { response: {status: 200, data: { 
 				message: `Help you with something, brah?`,
@@ -35,7 +16,7 @@ exports.router = async (req, res, db) => {
 					ping: `${ getBaseAPIUrl( req ) }ping`,
 				}
 			}}})
-			return
+			return 
 
 		case `/ping`:
 			respond(req, res, {
@@ -53,15 +34,6 @@ exports.router = async (req, res, db) => {
 				return
 			}
 			respond(req, res, {response:{ status: 200, data: notifyData }})
-			return
- 
-		case `/visitor`:
-			const visitorData = await visitor ( req, res, db )
-			respond(req, res, { 
-				response:{ 
-					status: 200, 
-					data: visitorData
-				}})
 			return
 
 		default: {
