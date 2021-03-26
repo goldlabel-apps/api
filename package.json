@@ -2,6 +2,7 @@
   "license": "MIT",
   "scripts": {
     "api": "$PWD/unix/api",
-    "git": "$PWD/unix/git"
+    "git": "$PWD/unix/git",
+    "pub": "$PWD/unix/firebase"
   }
 }

@@ -2,7 +2,7 @@
 # chmod ug+x firebase
 clear
 
-echo 'Starting Firebase API'
+echo 'Deploying to Firebase'
 clear
 cd ./functions 
-yarn serve
+yarn deploy
