@@ -1,4 +1,4 @@
-## /ping
+## /notify
 
 request
 
