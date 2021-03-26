@@ -1,6 +1,5 @@
-
+.env
 node_modules
 serviceAccountKey.json
-.env
 ui-debug.log
 
