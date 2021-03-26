@@ -4,7 +4,7 @@
 Params can be either posted or using GET you can 
 send query params instead. If POST, the endpoint 
 requires authorization and will return bad permissions
-error regardless of query params
+error regardless of query params 
 
 #### example
 
