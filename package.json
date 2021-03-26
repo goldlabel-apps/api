@@ -1,0 +1,7 @@
+{
+  "license": "MIT",
+  "scripts": {
+    "api": "$PWD/unix/api",
+    "git": "$PWD/unix/git"
+  }
+}
