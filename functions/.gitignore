@@ -1,8 +1,0 @@
-
-node_modules
-serviceAccountKey.json
-.env
-
-# Endpoints are currently in separate private repos
-endpoints/push2talk
-
