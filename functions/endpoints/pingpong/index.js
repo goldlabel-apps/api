@@ -1,4 +1,6 @@
 exports.pingpong = async (req, res, db) => {	
+	
+
 	/* TAKES FINGERPRINT, returns ID */
 	const {
 		method,

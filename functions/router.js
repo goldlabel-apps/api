@@ -1,6 +1,5 @@
 const PJSON = require('./package.json')
 const { ping } = require( './endpoints/ping' )
-const { notify } = require( './endpoints/notify' )
 const { pingpong } = require( './endpoints/pingpong' )
 
 exports.router = async (req, res, db) => {	
@@ -8,31 +7,19 @@ exports.router = async (req, res, db) => {
 	let params = req.params[0].split( `/` )
 	params = params.slice( 1, params.length)
 	let endpoint = params[0]
+	let action = params[1]
 
 	switch (endpoint) { 
 		
-		case ``:
-			
-			let notifyURLParams = `?mode=example&to=listingslab@gmail.com`
+		case ``:			
 			respond(req, res, { response: {status: 200, data: { 
 				message: `Help you with something, brah?`,
 				examples: {
-					ping: `${ getBaseAPIUrl( req ) }ping/`,
-					notify: `${ getBaseAPIUrl( req ) }notify/${ notifyURLParams }`,
-					pingpong: `${ getBaseAPIUrl( req ) }pingpong/check/fingerprint`,
+					ping: `${ getBaseAPIUrl( req ) }ping`,
+					pingpong: `${ getBaseAPIUrl( req ) }pingpong`,
 				}
 			}}})
 			return 
-
-
-		case `pingpong`:
-			const pingpongData = await pingpong(req, res, db)
-			respond(req, res, { response:{ 
-									error: pingpongData.error, 
-									status: pingpongData.status, 
-									data: pingpongData.data, 
-			}})
-			return
 
 		case `ping`:
 			respond(req, res, {
@@ -43,12 +30,12 @@ exports.router = async (req, res, db) => {
 					}}})
 			return
 
-		case `notify`:
-			const notifyData = await notify(req, res, db)
+		case `pingpong`:
+			let pingpongData = await pingpong(req, res, db)
 			respond(req, res, { response:{ 
-									error: notifyData.error, 
-									status: notifyData.status, 
-									data: notifyData.data, 
+									error: pingpongData.error, 
+									status: pingpongData.status, 
+									data: pingpongData.data, 
 			}})
 			return
 
