@@ -9,8 +9,6 @@ const { router } = require( './router.js' )
 admin.initializeApp({
   projectId: serviceAccount.project_id, 
   credential: admin.credential.cert(serviceAccount),
-  // databaseURL: process.env.DATABASEURL,
-  // storageBucket: process.env.STORAGEBUCKET,
 })
 let db = admin.firestore()
 

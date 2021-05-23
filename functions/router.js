@@ -1,6 +1,7 @@
 const PJSON = require('./package.json')
 const { ping } = require( './endpoints/ping' )
 const { pingpong } = require( './endpoints/pingpong' )
+const { hosts } = require( './endpoints/hosts/hosts' )
 
 exports.router = async (req, res, db) => {	
 	
@@ -16,7 +17,7 @@ exports.router = async (req, res, db) => {
 				message: `Help you with something, brah?`,
 				examples: {
 					ping: `${ getBaseAPIUrl( req ) }ping`,
-					pingpong: `${ getBaseAPIUrl( req ) }pingpong`,
+					hosts: `${ getBaseAPIUrl( req ) }hosts`,
 				}
 			}}})
 			return 
@@ -39,6 +40,16 @@ exports.router = async (req, res, db) => {
 			}})
 			return
 
+
+		case `hosts`:
+			let hostsData = await hosts(req, res, db)
+			respond(req, res, { response:{ 
+									error: hostsData.error, 
+									status: hostsData.status, 
+									data: hostsData.data, 
+			}})
+			return
+
 		default: {
 			respond(req, res, { 
 				response:{ status: 404, data: {  message: `Sorry, that endpoint does not exist`}}})
@@ -58,7 +69,7 @@ function respond ( req, res, response ){
 	let endpoint = params[0]
 
 	let r = {
-		app: PJSON.name,
+		// app: PJSON.name,
 		baseAPIUrl: getBaseAPIUrl( req ),
 		version: PJSON.version,
 		contact: process.env.GMAIL_ACCOUNT,
