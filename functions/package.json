@@ -1,7 +1,7 @@
 {
   "name": "listingslab-api",
   "description": "Listingslab Serverless Node/Express API on Google Firebase",
-  "version": "14.0.5",
+  "version": "14.0.8",
   "license": "MIT",
   "repository": "https://github.com/listingslab-software/listingslab_src",
   "author": "listingslab <listingslab@gmail.com>",

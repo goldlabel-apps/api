@@ -42,7 +42,7 @@ exports.router = async (req, res, db) => {
 
 
 		case `hosts`:
-			let hostsData = await hosts(req, res, db)
+			let hostsData = await hosts(req, res, db, action)
 			respond(req, res, { response:{ 
 									error: hostsData.error, 
 									status: hostsData.status, 
