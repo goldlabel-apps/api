@@ -2,7 +2,7 @@ const PJSON = require('./package.json')
 const { ping } = require( './endpoints/ping' )
 const { pingpong } = require( './endpoints/pingpong' )
 const { hosts } = require( './endpoints/hosts/hosts' )
-const { trips } = require( './endpoints/trips/trips' )
+const { localify } = require( './endpoints/localify/localify' )
 
 exports.router = async (req, res, db) => {	
 	
@@ -18,7 +18,7 @@ exports.router = async (req, res, db) => {
 				message: `Help you with something, brah?`,
 				examples: {
 					ping: `${ getBaseAPIUrl( req ) }ping`,
-					trips: `${ getBaseAPIUrl( req ) }trips`,
+					localify: `${ getBaseAPIUrl( req ) }localify`,
 				}
 			}}})
 			return 
@@ -51,12 +51,13 @@ exports.router = async (req, res, db) => {
 			}})
 			return
 
-		case `trips`:
-			let tripsData = await trips(req, res, db, action)
+
+		case `localify`:
+			let localifyData = await localify(req, res, db, action)
 			respond(req, res, { response:{ 
-									error: tripsData.error, 
-									status: tripsData.status, 
-									data: tripsData.data, 
+									error: localifyData.error, 
+									status: localifyData.status, 
+									data: localifyData.data, 
 			}})
 			return
 
