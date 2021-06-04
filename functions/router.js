@@ -2,6 +2,7 @@ const PJSON = require('./package.json')
 const { ping } = require( './endpoints/ping' )
 const { pingpong } = require( './endpoints/pingpong' )
 const { hosts } = require( './endpoints/hosts/hosts' )
+const { trips } = require( './endpoints/trips/trips' )
 
 exports.router = async (req, res, db) => {	
 	
@@ -17,7 +18,7 @@ exports.router = async (req, res, db) => {
 				message: `Help you with something, brah?`,
 				examples: {
 					ping: `${ getBaseAPIUrl( req ) }ping`,
-					hosts: `${ getBaseAPIUrl( req ) }hosts`,
+					trips: `${ getBaseAPIUrl( req ) }trips`,
 				}
 			}}})
 			return 
@@ -47,6 +48,15 @@ exports.router = async (req, res, db) => {
 									error: hostsData.error, 
 									status: hostsData.status, 
 									data: hostsData.data, 
+			}})
+			return
+
+		case `trips`:
+			let tripsData = await trips(req, res, db, action)
+			respond(req, res, { response:{ 
+									error: tripsData.error, 
+									status: tripsData.status, 
+									data: tripsData.data, 
 			}})
 			return
 
