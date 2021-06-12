@@ -1,21 +1,18 @@
-exports.pingpong = async (req, res, db) => {	
-	
-	/* TAKES FINGERPRINT, returns ID */
+exports.individuals = async (req, res, db) => {	
 	const {
 		method,
 		body,
 	} = req
-	const { fingerprint } = body
+	const { individual } = body
 	if ( method !== 'POST'){ return { status: 601, data: {	message: `POST verb is required` } } }
-	if ( !fingerprint ){ return { status: 602, data: {	message: `fingerpring is required` } } }
-
+	if ( !individual ){ return { status: 602, data: {	message: `individual is required` } } }
 	let id = ``
-	const tingQuery = await db.collection(`pingpong`)
-						.where(`fingerprint`, `==`, fingerprint)
+	const tingQuery = await db.collection(`individuals`)
+						.where(`individual`, `==`, individual)
 						.get()	
 
 	if (tingQuery.empty){
-		const newTing = await db.collection(`pingpong`).add({
+		const newTing = await db.collection(`individuals`).add({
 			created: Date.now(),
 			...body,
 		})
@@ -24,7 +21,7 @@ exports.pingpong = async (req, res, db) => {
 		tingQuery.forEach((doc) => { 
 			id = doc.id
 		})
-		const updateTing = await db.collection(`pingpong`)
+		const updateTing = await db.collection(`individuals`)
 									.doc(id)
 									.set({
 										...body,

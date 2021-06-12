@@ -5,5 +5,5 @@ clear
 echo 'GitHub...'
 echo 'Dot committing to master. Not reccomended ...'
 
-git add . && git commit -m '14.1.3' && git push
+git add . && git commit -m '14.1.5' && git push
 

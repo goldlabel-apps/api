@@ -1,7 +1,7 @@
 {
+  "version": "14.1.5",
   "name": "listingslab-api",
   "description": "Listingslab Serverless Node/Express API on Google Firebase",
-  "version": "14.1.4",
   "license": "MIT",
   "scripts": {
     "start": "$PWD/unix/api",
