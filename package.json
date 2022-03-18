@@ -1,10 +1,8 @@
 {
-  "version": "14.1.5",
-  "name": "listingslab-api",
-  "description": "Listingslab Serverless Node/Express API on Google Firebase",
-  "license": "MIT",
+  "name": "@listingslab/api",
+  "version": "19.4.0",
+  "description": "Serverless Node/Express API on Google Firebase",
   "scripts": {
-    "start": "$PWD/unix/api",
-    "deploy": "$PWD/unix/firebase"
+    "start": "cd ./functions && npm run serve"
   }
 }

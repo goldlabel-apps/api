@@ -1,8 +1,0 @@
-#!/bin/bash
-# chmod ug+x firebase
-clear
-
-echo 'Deploying to Firebase'
-clear
-cd ./functions 
-yarn deploy
