@@ -5,7 +5,6 @@
   "license": "MIT",
   "scripts": {
     "start": "$PWD/unix/api",
-    "git": "$PWD/unix/git",
     "deploy": "$PWD/unix/firebase"
   }
 }

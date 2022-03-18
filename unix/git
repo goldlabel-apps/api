@@ -1,9 +1,0 @@
-#!/bin/bash
-# chmod ug+x git
-clear
-
-echo 'GitHub...'
-echo 'Dot committing to master. Not reccomended ...'
-
-git add . && git commit -m '14.1.5' && git push
-
