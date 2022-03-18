@@ -1,10 +1,7 @@
 {
-  "name": "listingslab-api",
-  "description": "Listingslab Serverless Node/Express API on Google Firebase",
-  "version": "14.1.4",
-  "license": "MIT",
-  "repository": "https://github.com/listingslab-software/listingslab_src",
-  "author": "listingslab <listingslab@gmail.com>",
+  "name": "functions",
+  "description": "Google Firebase",
+  "version": "19.4.0",
   "scripts": {
     "serve": "firebase emulators:start --only functions",
     "shell": "firebase functions:shell",
